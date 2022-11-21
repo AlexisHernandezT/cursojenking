@@ -1,0 +1,17 @@
+node {
+ 
+    stage('limpiar espacio de trabajo') { 
+        cleanWs()
+    }
+    stage('GIT') {
+       git branch: 'Main', url: 'https://github.com/AlexisHernandezT/cursojenking.git'
+       
+    }
+    stage('Results') {
+        sh 'mvn clean package'
+      
+    }
+    stage('Pruebas unitarias'){
+        sh 'mvn test'
+    }
+}
